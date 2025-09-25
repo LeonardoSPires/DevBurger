@@ -25,6 +25,7 @@ routes.use(authMiddleware);
 // produtos
 routes.post('/products', upload.single('file'), ProductController.store);
 routes.get('/products', ProductController.index);
+routes.put('/products/:id', upload.single('file'), ProductController.update);
 
 // categorias
 routes.post('/categories', CategoryController.store);
