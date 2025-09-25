@@ -1,8 +1,7 @@
-import mongoose from "mongoose";
-import Product from "../models/Product";
-import Category from "../models/Category";
+import mongoose from "mongoose";  
 
-const OrderSchema = new mongoose.Schema({
+const OrderSchema = new mongoose.Schema(
+  {
   user: {
     id: {
         type: String,
@@ -13,10 +12,10 @@ const OrderSchema = new mongoose.Schema({
     required: true,
     },
   },
-  Products: [
+  products: [
     {
         id: {
-            type: String,
+            type: Number,
             required: true,
         },
         name: {
@@ -36,7 +35,7 @@ const OrderSchema = new mongoose.Schema({
             required: true,
         },
         quantity: {
-            type: Number,
+            type: String,
             required: true,
         },
     },
