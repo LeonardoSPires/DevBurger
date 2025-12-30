@@ -105,6 +105,25 @@ class OrderController {
 
         return res.json({ message: 'Status updated successfully!' });
     }
+
+    async delete(req, res) {
+        try {
+            const { admin: isAdmin } = await User.findByPk(req.userId);
+
+            if (!isAdmin) {
+                return res.status(401).json({ error: 'Unauthorized' });
+            }
+
+            const { id } = req.params;
+
+            await Order.findByIdAndDelete(id);
+
+            return res.status(200).json({ message: 'Pedido deletado com sucesso!' });
+        } catch (error) {
+            console.error(error);
+            return res.status(500).json({ error: 'Erro ao deletar pedido' });
+        }
+    }
 }
 
 export default new OrderController();
